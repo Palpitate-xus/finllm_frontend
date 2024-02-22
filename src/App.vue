@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-menu :default-active="activeIndex" router="True" class="el-menu-demo" mode="horizontal">
+    <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal">
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/qa">问答</el-menu-item>
       <el-menu-item index="/about">关于</el-menu-item>
@@ -10,9 +10,10 @@
         <el-menu-item index="4-2">订单管理</el-menu-item>
         <el-menu-item index="4-3">地址管理</el-menu-item>
         <el-menu-item index="4-4">愿望单</el-menu-item>
-        <el-menu-item index="4-5">登录</el-menu-item>
+        <el-menu-item index="/login">登录</el-menu-item>
         <el-menu-item index="4-6">注销</el-menu-item>
       </el-submenu>
+      <!-- <el-menu-item index="/login" style="display:flex;">登陆</el-menu-item> -->
     </el-menu>
     <router-view/>
   </div>
