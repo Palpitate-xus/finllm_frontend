@@ -1,14 +1,14 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 // 创建一个 axios 实例
-const api = axios.create({
+const axiosInstance = axios.create({
   baseURL: 'http://localhost:8001/',
   timeout: 5000 // 请求超时时间
 });
 
 // 添加请求拦截器
-api.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
     // 从本地存储中获取 token
     const token = localStorage.getItem('token');
@@ -18,7 +18,7 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
 
       // 解码 token 获取过期时间
-      const decodedToken = jwt_decode(token);
+      const decodedToken = jwtDecode(token);
       const expirationTime = decodedToken.exp;
 
       // 获取当前时间戳
@@ -27,7 +27,7 @@ api.interceptors.request.use(
       // 如果 token 已过期，则跳转到登录页
       if (expirationTime < currentTime) {
         // 处理过期情况，例如跳转到登录页面
-        window.location.href = '/login';
+        this.$router.push('/login');
       }
     }
 
@@ -39,7 +39,7 @@ api.interceptors.request.use(
 );
 
 // 添加响应拦截器
-api.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => {
     return response.data;
   },
@@ -49,4 +49,4 @@ api.interceptors.response.use(
 );
 
 // 导出封装好的 API 对象
-export default api;
+export default axiosInstance;
