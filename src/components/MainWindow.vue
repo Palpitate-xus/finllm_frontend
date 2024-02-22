@@ -41,6 +41,8 @@
   </template>
   
   <script>
+  // import axiosInstance from '../api/index.js'
+  import axios from 'axios'
   export default {
     name: 'MainWindow',
     data() {
@@ -63,8 +65,16 @@
       beforeRemove(file, fileList) {
         return this.$confirm(`确定移除 ${file.name, fileList}？`);
       },
-      handleClick1() {
-        // 实现功能1
+      async handleClick1() {
+        await axios.post('http://localhost:8001/analyze_sentiment', {
+          text: this.message,
+          name: "test",
+          description: "情感分析"
+        })
+          .then((response) => {
+            console.log(response.data.sentiment_score);
+            this.output = response.data.sentiment_score;
+          });
       },
       handleClick2() {
         // 实现功能2
