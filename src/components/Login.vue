@@ -38,7 +38,23 @@ export default {
         },
       };
   },
-
+  methods: {
+    goToRegister() {
+      this.$router.push('/register');
+    },
+    goToForgotPassword() {
+      this.$router.push('/forgot-password');
+    },
+    login() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.$store.dispatch('login', this.loginForm).then(() => {
+            this.$router.push('/');
+          });
+        }
+      });
+    }
+  }
 }
 </script>
 
