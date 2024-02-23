@@ -6,6 +6,7 @@ import HelloWorld from '../components/HelloWorld.vue'
 import LoginComponent from '../components/Login.vue'
 import RegisterComponent from '../components/Register.vue'
 import MainWindow from '../components/MainWindow.vue'
+import AboutComponent from '../components/About.vue'
 
 export default new Router({
   routes: [
@@ -14,11 +15,11 @@ export default new Router({
       name: 'home',
       component: HelloWorld
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: About
-    // },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutComponent
+    },
     {
       path: '/login',
       name: 'login',
