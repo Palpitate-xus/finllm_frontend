@@ -16,6 +16,9 @@
       <!-- <el-menu-item index="/login" style="display:flex;">登陆</el-menu-item> -->
     </el-menu>
     <router-view/>
+    <div class="copyright">
+      <p>&copy; 2024. All rights reserved. palpitate.xus@mail.ecust.edu.cn</p>
+    </div>
   </div>
 </template>
 
@@ -43,5 +46,11 @@ export default {
   color: #2c3e50;
   margin: 0 auto;
   width: 80%;
+}
+
+.copyright {
+  margin-top: 40px;
+  text-align: center;
+  color: #999;
 }
 </style>
