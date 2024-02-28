@@ -6,13 +6,13 @@
       <div class="info">
         <h2>作者：xus</h2>
         <p>Email：palpitate.xus@mail.ecust.edu.cn</p>
-        <p>个人网站：<a href="https://www.example.com">https://www.example.com</a></p>
+        <p>个人网站：<a href="https://github.com/Palpitate-xus">https://github.com/Palpitate-xus</a></p>
       </div>
     </div>
-    <!-- <div class="description">
-      <p>这是一个关于我们页面的示例，用于展示作者的信息。</p>
-      <p>您可以在此处添加更多关于作者的描述。</p>
-    </div> -->
+    <div class="description">
+      <p>ECUST</p>
+      <p>计金（双）200</p>
+    </div>
   </div>
 </template>
 
