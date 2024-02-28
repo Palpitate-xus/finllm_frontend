@@ -28,6 +28,10 @@ axiosInstance.interceptors.request.use(
       if (expirationTime < currentTime) {
         // 处理过期情况，例如跳转到登录页面
         this.$router.push('/login');
+        this.$notify.error({
+          title: '错误',
+          message: '您的登陆状态已过期，请重新登录'
+        });
       }
     }
 
