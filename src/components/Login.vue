@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
 export default {
   name: 'LoginComponent',
   data() {
@@ -36,18 +37,34 @@ export default {
         },
       };
   },
-  mounted(){
+  mounted() {
     // 判断是否已经登陆
-    if (localStorage.getItem('token')) {
-      // 提示已经登陆
-      this.$notify({
-        title: '提示',
-        message: '您已经登录',
-        type: 'success',
-      });
-      this.$router.push('/');
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const expirationTime = decodedToken.exp;
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (expirationTime < currentTime) {
+        // token 已过期
+        localStorage.removeItem('token');
+        this.$notify({
+          title: '提示',
+          message: '您的登录状态已过期，请重新登录',
+          type: 'error',
+        });
+      } else {
+        // token 未过期
+        this.$notify({
+          title: '提示',
+          message: '您已经登录',
+          type: 'success',
+        });
+        this.$router.push('/');
+      }
     }
   },
+
   methods: {
     goToRegister() {
       this.$router.push('/register');
