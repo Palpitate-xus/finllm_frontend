@@ -6,13 +6,18 @@
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="forgetPasswordForm.email" placeholder="请输入邮箱"></el-input>
         </el-form-item>
-        <el-form-item label="验证码" prop="validateCode">
-          <el-input v-model="forgetPasswordForm.validateCode" placeholder="请输入验证码"></el-input>
-        </el-form-item>
+        <!-- <el-form-item label="验证码" prop="validateCode"> -->
+          <!-- <el-input v-model="forgetPasswordForm.validateCode" placeholder="请输入验证码"></el-input> -->
+          <!-- <el-input placeholder="请输入验证码" v-model="forgetPasswordForm.validateCode" class="input-with-button-input">
+            <template slot="append">
+              <el-button @click="getVerificationCode" type="primary">获取验证码</el-button>
+            </template>
+          </el-input>
+        </el-form-item> -->
         <el-form-item class="button-container">
-          <el-button @click="goToRegister" class="register-button">注册</el-button>
-          <el-button type="primary" @click="login">登录</el-button>
-          <el-button type="text" @click="goToForgotPassword" >忘记密码</el-button>
+          <!-- <el-button @click="goToRegister" class="register-button">注册</el-button> -->
+          <el-button type="primary" @click="submit" class="submit-button">重置密码</el-button>
+          <el-button type="text" @click="goToLogin">返回</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -32,18 +37,18 @@ data() {
       },
       loginRules: {
         email: [{ required: true, message: '邮箱为空', trigger: 'blur' }],
-        password: [{ required: true, message: '验证码为空', trigger: 'blur' }],
+        // validateCode: [{ required: true, message: '验证码为空', trigger: 'blur' }],
       },
     };
 },
 methods: {
-  goToForgotPassword() {
-    this.$router.push('/forgot-password');
+  goToLogin() {
+    this.$router.back();
   },
-  async login() {
+  async submit() {
     await this.$refs.forgetPasswordForm.validate(valid => {
       if (valid) {
-        axios.post('http://localhost:8001/users/login', this.forgetPasswordForm)
+        axios.post('http://localhost:8001/users/forgot-password', this.forgetPasswordForm)
         .then((response) => {
               console.log(response.data);
               localStorage.setItem('token', response.data.access_token);
@@ -81,9 +86,15 @@ methods: {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  margin-right: 10px;
 }
 
 .forgot-password-button {
   color: #909399;
 }
+
+.submit-button {
+  margin-right: 10px;
+}
+
 </style>
