@@ -35,7 +35,8 @@ export default new Router({
     {
       path: '/qa',
       name: 'qa',
-      component: MainWindow
+      component: MainWindow,
+      meta: { requiresAuth: true }
     },
     {
       path: '/profile',
@@ -45,7 +46,8 @@ export default new Router({
     {
       path: '/history',
       name: 'history',
-      component: HistoryComponent
+      component: HistoryComponent,
+      meta: { requiresAuth: true }
     }
   ]
 })
