@@ -41,8 +41,7 @@
   </template>
   
   <script>
-  // import axiosInstance from '../api/index.js'
-  import axios from 'axios'
+  import axiosInstance from '../api/index.js'
   export default {
     name: 'MainWindow',
     data() {
@@ -66,14 +65,14 @@
         return this.$confirm(`确定移除 ${file.name, fileList}？`);
       },
       async handleClick1() {
-        await axios.post('http://localhost:8001/analyze_sentiment', {
+        await axiosInstance.post('/llms/analyze_sentiment', {
           text: this.message,
           name: "test",
           description: "情感分析"
         })
           .then((response) => {
-            console.log(response.data.sentiment_score);
-            this.output = response.data.sentiment_score;
+            console.log(response);
+            this.output = response.sentiment_score;
           });
       },
       handleClick2() {
