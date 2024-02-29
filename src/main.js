@@ -25,9 +25,10 @@ router.beforeEach((to, from, next) => {
       isLoggedIn = true;
     }
   }
-
+  console.log(isLoggedIn);
   if (to.meta.requiresAuth && !isLoggedIn) {
     // 如果访问的页面需要登录权限且用户未登录，则提示并跳转到登录页
+    localStorage.removeItem('token');
     Notification({
       title: '提示',
       message: '您未登录或登陆状态已过期，请先登录',
