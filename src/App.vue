@@ -32,6 +32,9 @@ export default {
       activeIndex: '/'
     }
   },
+  mounted() {
+            this.activeIndex = this.$route.path
+  },
   methods: {
 
   }
