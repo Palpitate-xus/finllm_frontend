@@ -50,13 +50,13 @@ export default {
   data() {
     return {
       userInfo: {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        phone: '1234567890'
+        name: 'null',
+        email: 'null@null.null',
+        phone: 'null'
       },
       accountInfo: {
-        balance: 1000,
-        level: 'VIP'
+        balance: null,
+        level: 'null'
       },
       settingsForm: {
         name: '',
@@ -90,6 +90,12 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.$notify({
+            title: '错误',
+            message: '获取用户信息失败，请重新登录',
+            type: 'error'
+          })
+          this.$router.push('/login');
         });
     }
   }
