@@ -35,8 +35,12 @@ export default {
   mounted() {
     this.activeIndex = this.$route.path
   },
-  watch() {
-    this.activeIndex = this.$route.path
+  watch: {
+    $route(to,from){
+      console.log(from.path);//从哪来
+      console.log(to.path);//到哪去
+      this.activeIndex = this.$route.path
+    },
   },
   methods: {
     logout() {
