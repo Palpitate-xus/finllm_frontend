@@ -8,9 +8,9 @@
       <el-submenu index="4">
         <template slot="title">个人中心</template>
         <el-menu-item index="profile">个人信息管理</el-menu-item>
-        <el-menu-item index="4-2">订单管理</el-menu-item>
+        <!-- <el-menu-item index="4-2">订单管理</el-menu-item>
         <el-menu-item index="4-3">地址管理</el-menu-item>
-        <el-menu-item index="4-4">愿望单</el-menu-item>
+        <el-menu-item index="4-4">愿望单</el-menu-item> -->
         <el-menu-item index="/login">登录</el-menu-item>
         <el-menu-item @click="logout">注销</el-menu-item>
       </el-submenu>
