@@ -8,6 +8,7 @@ import RegisterComponent from '../components/Register.vue'
 import MainWindow from '../components/MainWindow.vue'
 import AboutComponent from '../components/About.vue'
 import ProfileComponent from '../components/Profile.vue'
+import HistoryComponent from '../components/History.vue'
 
 export default new Router({
   routes: [
@@ -40,6 +41,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: ProfileComponent
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: HistoryComponent
     }
   ]
 })
