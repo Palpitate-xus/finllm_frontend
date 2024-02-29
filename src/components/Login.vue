@@ -31,6 +31,7 @@ export default {
           password: '',
         },
         loginRules: {
+          username: [{ required: true, message: '用户名为空', trigger: 'blur' }],
           password: [{ required: true, message: '密码为空', trigger: 'blur' }],
         },
       };
