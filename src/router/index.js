@@ -7,6 +7,7 @@ import LoginComponent from '../components/Login.vue'
 import RegisterComponent from '../components/Register.vue'
 import MainWindow from '../components/MainWindow.vue'
 import AboutComponent from '../components/About.vue'
+import ProfileComponent from '../components/Profile.vue'
 
 export default new Router({
   routes: [
@@ -34,6 +35,11 @@ export default new Router({
       path: '/qa',
       name: 'qa',
       component: MainWindow
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfileComponent
     }
   ]
 })
