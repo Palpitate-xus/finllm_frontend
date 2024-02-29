@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use(
 
     // 如果 token 存在，则在请求头中添加 Authorization 字段
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
 
       // 解码 token 获取过期时间
       const decodedToken = jwtDecode(token);
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
       // 如果 token 已过期，则跳转到登录页
       if (expirationTime < currentTime) {
         // 处理过期情况，例如跳转到登录页面
-        this.$router.push('/login');
+        window.location.href = '/#/login';
         this.$notify.error({
           title: '错误',
           message: '您的登陆状态已过期，请重新登录'
