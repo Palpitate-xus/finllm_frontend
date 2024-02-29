@@ -73,6 +73,9 @@
           .then((response) => {
             console.log(response);
             this.output = response.sentiment_score;
+          })
+          .catch((error) => {
+            console.log(error);
           });
       },
       handleClick2() {
