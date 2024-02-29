@@ -11,9 +11,9 @@
           ></el-input>
           <el-upload
             action="https://jsonplaceholder.typicode.com/posts/"
-            on-preview="handlePreview"
-            on-remove="handleRemove"
-            before-remove="beforeRemove"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
             :file-list="fileList"
           >
             <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
@@ -80,6 +80,9 @@
       },
       handleClick2() {
         // 实现功能2
+      },
+      handleClick3() {
+        // 实现功能3
       },
     },
   };
