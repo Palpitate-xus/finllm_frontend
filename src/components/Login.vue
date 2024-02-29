@@ -3,8 +3,8 @@
       <el-card class="login-card">
         <h3>{{ title }}</h3>
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-width="80px">
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="loginForm.email" placeholder="请输入邮箱"></el-input>
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
@@ -20,20 +20,17 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'LoginComponent',
   data() {
       return {
         title: '登录',
         loginForm: {
-          email: '',
+          username: '',
           password: '',
         },
         loginRules: {
-          email: [
-            { required: true, message: '邮箱为空', trigger: 'blur' },
-            { type: 'email', message: '邮箱格式错误', trigger: 'blur' },
-          ],
           password: [{ required: true, message: '密码为空', trigger: 'blur' }],
         },
       };
@@ -45,12 +42,22 @@ export default {
     goToForgotPassword() {
       this.$router.push('/forgot-password');
     },
-    login() {
-      this.$refs.loginForm.validate(valid => {
+    async login() {
+      await this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$store.dispatch('login', this.loginForm).then(() => {
-            this.$router.push('/');
-          });
+          axios.post('http://localhost:8001/users/login', this.loginForm)
+          .then((response) => {
+                console.log(response.data);
+                localStorage.setItem('token', response.data.access_token);
+                this.$message({
+                  message: '登陆成功',
+                  type: 'success',
+                });
+                this.$router.push('/');
+              })
+              .catch((error) => {
+                console.log(error);
+              });
         }
       });
     }
