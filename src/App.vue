@@ -3,6 +3,7 @@
     <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal">
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/qa">问答</el-menu-item>
+      <el-menu-item index="/history">历史记录</el-menu-item>
       <el-menu-item index="/about">关于</el-menu-item>
       <el-submenu index="4">
         <template slot="title">个人中心</template>
