@@ -38,7 +38,13 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem('token')
+      this.$notify({
+        title: '提示',
+        message: '您已成功注销登录',
+        type: 'success'
+      })
       this.$router.push('/login')
+      .catch(() => {})
     }
   }
 }
