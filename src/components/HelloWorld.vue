@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1 class="title">站点基本情况</h1>
     <!-- 公告栏 -->
     <el-card class="mt-20">
       <div slot="header" class="clearfix">
