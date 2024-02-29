@@ -3,7 +3,7 @@
     <!-- 公告栏 -->
     <el-card class="mt-20">
       <div slot="header" class="clearfix">
-        <span class="card-title">公告</span>
+        <span class="card-title">基于大模型的金融数据分析系统</span>
       </div>
       <div class="notice-list">
         <ul>
