@@ -12,7 +12,7 @@
         <el-menu-item index="4-3">地址管理</el-menu-item>
         <el-menu-item index="4-4">愿望单</el-menu-item>
         <el-menu-item index="/login">登录</el-menu-item>
-        <el-menu-item index="4-6">注销</el-menu-item>
+        <el-menu-item @click="logout">注销</el-menu-item>
       </el-submenu>
       <!-- <el-menu-item index="/login" style="display:flex;">登陆</el-menu-item> -->
     </el-menu>
@@ -36,7 +36,10 @@ export default {
             this.activeIndex = this.$route.path
   },
   methods: {
-
+    logout() {
+      localStorage.removeItem('token')
+      this.$router.push('/login')
+    }
   }
 }
 </script>
