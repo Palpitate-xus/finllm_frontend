@@ -10,14 +10,17 @@
             v-model="message"
           ></el-input>
           <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="http://127.0.0.1:8001/llms/upload/"
+            :headers="authorization"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
             :before-remove="beforeRemove"
+            :on-success="fileUploaded"
             :file-list="fileList"
+            :limit="1"
           >
-            <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-            <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+            <el-button slot="trigger" size="small" type="primary">上传文件</el-button>
+            <!-- <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button> -->
           </el-upload>
         </el-col>
         <el-col :span="8" class="button-column">
@@ -48,8 +51,13 @@
       return {
         message: '',
         output: '',
+        filepath: '',
         fileList: [],
+        authorization: {},
       };
+    },
+    mounted() {
+      this.authorization = { authorization: localStorage.getItem('token')};
     },
     methods: {
       submitUpload() {
@@ -62,7 +70,16 @@
         console.log('Remove uploaded file:', file, fileList);
       },
       beforeRemove(file, fileList) {
-        return this.$confirm(`确定移除 ${file.name, fileList}？`);
+        console.log(file)
+        console.log(fileList)
+        return this.$confirm(`确定移除 ${file.name}？`);
+      },
+      fileUploaded(response, file, fileList) {
+        console.log(response);
+        console.log(file);
+        console.log(fileList);
+        this.filepath = response.saved_as;
+        console.log("file_path: ", this.filepath);
       },
       async handleClick1() {
         await axiosInstance.post('/llms/analyze_sentiment', {
