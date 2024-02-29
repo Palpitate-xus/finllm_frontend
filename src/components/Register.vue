@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'RegisterComponent',
     data() {
@@ -56,12 +57,21 @@ export default {
       goToLogin() {
         this.$router.push('/login');
       },
-      register() {
-        this.$refs.registerForm.validate(valid => {
+      async register() {
+        await this.$refs.registerForm.validate(valid => {
           if (valid) {
-            this.$store.dispatch('register', this.registerForm).then(() => {
-              this.$router.push('/');
-            });
+             axios.post('http://localhost:8001/users/register', this.registerForm)
+              .then((response) => {
+                console.log(response.data);
+                this.$message({
+                  message: '注册成功',
+                  type: 'success',
+                });
+                this.$router.push('/login');
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           }
         });
       },
