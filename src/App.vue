@@ -44,14 +44,23 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.removeItem('token')
-      this.$notify({
-        title: '提示',
-        message: '您已成功注销登录',
-        type: 'success'
-      })
-      this.$router.push('/login')
-      .catch(() => {})
+      let token = localStorage.getItem('token')
+      if (token) {
+        localStorage.removeItem('token')
+        this.$notify({
+          title: '提示',
+          message: '您已成功注销登录',
+          type: 'success'
+        })
+        this.$router.push('/login')
+        .catch(() => {})
+      } else {
+        this.$notify({
+          title: '提示',
+          message: '您还未登录, 无需注销',
+          type: 'warning'
+        })
+      }
     }
   }
 }
