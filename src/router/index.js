@@ -9,6 +9,7 @@ import MainWindow from '../components/MainWindow.vue'
 import AboutComponent from '../components/About.vue'
 import ProfileComponent from '../components/Profile.vue'
 import HistoryComponent from '../components/History.vue'
+import ForgetPassword from '../components/ForgetPassword.vue'
 
 export default new Router({
   routes: [
@@ -31,6 +32,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: RegisterComponent
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: ForgetPassword
     },
     {
       path: '/qa',
