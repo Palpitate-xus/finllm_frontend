@@ -33,7 +33,10 @@ export default {
     }
   },
   mounted() {
-            this.activeIndex = this.$route.path
+    this.activeIndex = this.$route.path
+  },
+  watch() {
+    this.activeIndex = this.$route.path
   },
   methods: {
     logout() {
