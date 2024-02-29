@@ -35,6 +35,18 @@ export default {
         },
       };
   },
+  mounted(){
+    // 判断是否已经登陆
+    if (localStorage.getItem('token')) {
+      // 提示已经登陆
+      this.$notify({
+        title: '提示',
+        message: '您已经登录',
+        type: 'success',
+      });
+      this.$router.push('/');
+    }
+  },
   methods: {
     goToRegister() {
       this.$router.push('/register');
@@ -49,7 +61,8 @@ export default {
           .then((response) => {
                 console.log(response.data);
                 localStorage.setItem('token', response.data.access_token);
-                this.$message({
+                this.$notify({
+                  title: '提示',
                   message: '登陆成功',
                   type: 'success',
                 });
