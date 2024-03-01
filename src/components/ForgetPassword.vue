@@ -54,13 +54,18 @@ methods: {
               localStorage.setItem('token', response.data.access_token);
               this.$notify({
                 title: '提示',
-                message: '登陆成功',
+                message: '重置密码成功',
                 type: 'success',
               });
-              this.$router.push('/');
+              this.$router.push('/login');
             })
             .catch((error) => {
               console.log(error);
+              this.$notify({
+                title: '错误',
+                message: '重置密码失败，请检查邮箱是否正确',
+                type: 'error',
+              });
             });
       }
     });
