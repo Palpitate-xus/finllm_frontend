@@ -63,7 +63,8 @@ export default {
              axios.post('http://localhost:8001/users/register', this.registerForm)
               .then((response) => {
                 console.log(response.data);
-                this.$message({
+                this.$notify({
+                  title: '提示',
                   message: '注册成功',
                   type: 'success',
                 });
@@ -71,6 +72,11 @@ export default {
               })
               .catch((error) => {
                 console.log(error);
+                this.$notify({
+                  title: '错误',
+                  message: '注册失败，请检查用户名或邮箱',
+                  type: 'error',
+                });
               });
           }
         });
