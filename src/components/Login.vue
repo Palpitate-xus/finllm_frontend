@@ -88,6 +88,11 @@ export default {
               })
               .catch((error) => {
                 console.log(error);
+                this.$notify({
+                  title: '错误',
+                  message: '登陆失败，请检查用户名或密码',
+                  type: 'error',
+                });
               });
         }
       });
