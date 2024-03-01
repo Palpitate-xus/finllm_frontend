@@ -27,7 +27,10 @@
           <el-button @click="handleClick1">情感分析</el-button>
           <el-button @click="handleClick2">财报分析</el-button>
           <el-button @click="handleClick3">文本总结</el-button>
-          <!-- 添加更多按钮 -->
+          <el-button @click="handleClick3">市场预测</el-button>
+          <el-button @click="handleClick3">风险评估</el-button>
+          <el-button @click="handleClick3">事件分析</el-button>
+          <el-button @click="handleClick3">行业研究</el-button>
         </el-col>
         <el-col :span="8">
           <el-input
