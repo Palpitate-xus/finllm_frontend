@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal">
+    <el-menu
+      :default-active="activeIndex"
+      router
+      class="el-menu-demo"
+      mode="horizontal"
+    >
       <el-menu-item>
         <i class="el-icon-menu"></i>
         <span slot="title">基于大模型的金融数据分析系统</span>
@@ -33,7 +38,7 @@ export default {
   name: 'App',
   data () {
     return {
-      activeIndex: '/'
+      activeIndex: '/',
     }
   },
   mounted() {
