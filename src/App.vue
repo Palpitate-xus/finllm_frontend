@@ -9,7 +9,7 @@
       <el-menu-item index="/qa">问答</el-menu-item>
       <el-menu-item index="/history">历史记录</el-menu-item>
       <el-menu-item index="/about">关于</el-menu-item>
-      <el-submenu index="4">
+      <el-submenu index="4" class="user-menu">
         <template slot="title">个人中心</template>
         <el-menu-item index="profile">个人信息管理</el-menu-item>
         <!-- <el-menu-item index="4-2">订单管理</el-menu-item>
@@ -85,5 +85,22 @@ export default {
   margin-top: 40px;
   text-align: center;
   color: #999;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user-menu {
+  float: right !important;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 </style>
