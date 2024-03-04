@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- 公告栏 -->
-    <el-card class="mt-20">
+    <el-card class="el-card">
       <div slot="header" class="clearfix">
         <span class="card-title">基于大模型的金融数据分析系统</span>
       </div>
@@ -102,6 +102,12 @@ export default {
 </script>
 
 <style scoped>
+
+.el-card {
+  margin: 10px;
+  /* padding: 10px; */
+}
+
 .home {
   padding: 20px;
 }
