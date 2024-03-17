@@ -40,7 +40,7 @@
       <el-col :span="12">
         <el-card>
           <div slot="header" class="clearfix">
-            <span class="card-title">数据列表示例</span>
+            <span class="card-title">数据列表</span>
           </div>
           <el-table :data="dataList" stripe class="table">
             <el-table-column prop="name" label="名称"></el-table-column>
@@ -82,9 +82,9 @@ export default {
         { title: '支出', value: 5000 }
       ],
       dataList: [
-        { name: '数据1', type: '类型1', size: '100KB' },
-        { name: '数据2', type: '类型2', size: '200KB' },
-        { name: '数据3', type: '类型3', size: '300KB' }
+        { name: '股吧数据', type: '社交媒体', size: '100KB' },
+        { name: '财经新闻', type: '新闻', size: '200KB' },
+        { name: '开源数据', type: '开源数据', size: '300KB' }
       ],
       fileList: [
         { name: '文件1', format: '格式1', size: '100KB' },
