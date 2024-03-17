@@ -27,7 +27,7 @@
           <el-button @click="handleClick1">情感分析</el-button>
           <el-button @click="handleClick2">财报分析</el-button>
           <el-button @click="handleClick3">文本总结</el-button>
-          <el-button @click="handleClick3">市场预测</el-button>
+          <el-button @click="handleClick4">市场预测</el-button>
           <el-button @click="handleClick3">风险评估</el-button>
           <el-button @click="handleClick3">事件分析</el-button>
           <el-button @click="handleClick3">行业研究</el-button>
@@ -101,8 +101,19 @@
       handleClick2() {
         // 实现功能2
       },
-      handleClick3() {
-        // 实现功能3
+      async handleClick3() {
+        await axiosInstance.post('/llms/summarize', {
+          text: this.message,
+          name: "test",
+          description: "文本总结"
+        })
+          .then((response) => {
+            console.log(response);
+            this.output = response.summarize_res;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       },
     },
   };
