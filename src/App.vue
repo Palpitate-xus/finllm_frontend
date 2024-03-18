@@ -14,6 +14,7 @@
       <el-menu-item index="/qa">问答</el-menu-item>
       <el-menu-item index="/history">历史记录</el-menu-item>
       <el-menu-item index="/about">关于</el-menu-item>
+      <el-menu-item index="/help-docs">帮助</el-menu-item>
       <el-submenu index="5" v-if="authorization">
         <template slot="title">管理员菜单</template>
         <el-menu-item index="/user-management">用户管理</el-menu-item>
