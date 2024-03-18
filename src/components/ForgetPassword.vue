@@ -6,16 +6,7 @@
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="forgetPasswordForm.email" placeholder="请输入邮箱"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="验证码" prop="validateCode"> -->
-          <!-- <el-input v-model="forgetPasswordForm.validateCode" placeholder="请输入验证码"></el-input> -->
-          <!-- <el-input placeholder="请输入验证码" v-model="forgetPasswordForm.validateCode" class="input-with-button-input">
-            <template slot="append">
-              <el-button @click="getVerificationCode" type="primary">获取验证码</el-button>
-            </template>
-          </el-input>
-        </el-form-item> -->
         <el-form-item class="button-container">
-          <!-- <el-button @click="goToRegister" class="register-button">注册</el-button> -->
           <el-button type="primary" @click="submit" class="submit-button">重置密码</el-button>
           <el-button type="text" @click="goToLogin">返回</el-button>
         </el-form-item>
@@ -37,7 +28,6 @@ data() {
       },
       loginRules: {
         email: [{ required: true, message: '邮箱为空', trigger: 'blur' }],
-        // validateCode: [{ required: true, message: '验证码为空', trigger: 'blur' }],
       },
     };
 },
@@ -48,10 +38,9 @@ methods: {
   async submit() {
     await this.$refs.forgetPasswordForm.validate(valid => {
       if (valid) {
-        axios.post('http://localhost:8001/users/forgot-password', this.forgetPasswordForm)
+        axios.post('http://localhost:8001/users/reset_password', this.forgetPasswordForm)
         .then((response) => {
               console.log(response.data);
-              localStorage.setItem('token', response.data.access_token);
               this.$notify({
                 title: '提示',
                 message: '重置密码成功',
