@@ -11,6 +11,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[25, 50, 100, 200]"
+      :page-size="pagesize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
   </div>
 </template>
 
@@ -22,10 +31,19 @@ export default {
     return {
       historyData: [
         { id: 1, action: '登录', timestamp: '2024-02-19 10:00:00' },
-      ]
+      ],
+      currentPage: 4,
+      pagesize: 25,
+      total: 0,
     };
   },
   methods: {
+    handleSizeChange(val) {
+      this.pagesize = val;
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+    },
     formatTimestamp(timestamp) {
       const date = new Date(timestamp);
       return date.toLocaleString();
