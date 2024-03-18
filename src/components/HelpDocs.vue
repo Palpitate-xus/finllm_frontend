@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="doc-container">
   </div>
 </template>
 
@@ -22,5 +22,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.doc-container {
+  padding: 20px;
+}
+</style>
 
