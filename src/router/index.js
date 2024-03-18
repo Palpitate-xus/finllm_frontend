@@ -10,6 +10,7 @@ import AboutComponent from '../components/About.vue'
 import ProfileComponent from '../components/Profile.vue'
 import HistoryComponent from '../components/History.vue'
 import ForgetPassword from '../components/ForgetPassword.vue'
+import UserManagement from '../components/UserManagement.vue'
 
 export default new Router({
   routes: [
@@ -53,6 +54,12 @@ export default new Router({
       path: '/history',
       name: 'history',
       component: HistoryComponent,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/user-management',
+      name: 'user-management',
+      component: UserManagement,
       meta: { requiresAuth: true }
     }
   ]
