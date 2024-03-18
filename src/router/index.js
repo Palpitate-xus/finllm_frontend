@@ -12,6 +12,7 @@ import HistoryComponent from '../components/History.vue'
 import ForgetPassword from '../components/ForgetPassword.vue'
 import UserManagement from '../components/UserManagement.vue'
 import WebsiteConfig from '../components/WebsiteConfig.vue'
+import HelpDocs from '../components/HelpDocs.vue'
 
 export default new Router({
   routes: [
@@ -39,6 +40,11 @@ export default new Router({
       path: '/forgot-password',
       name: 'forgot-password',
       component: ForgetPassword
+    },
+    {
+      path: '/help-docs',
+      name: 'help-docs',
+      component: HelpDocs
     },
     {
       path: '/qa',
