@@ -7,6 +7,16 @@
 </template>
 
 <script>
+export default {
+  name: 'WebsiteConfig',
+  data() {
+    return {
+      activeIndex: '/',
+    }
+  },
+  methods: {
+  }
+}
 </script>
 
 <style scoped>
