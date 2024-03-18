@@ -3,6 +3,8 @@
     <el-table :data="historyData" stripe style="width: 100%">
       <el-table-column prop="id" label="ID" width="80"></el-table-column>
       <el-table-column prop="action" label="操作"></el-table-column>
+      <el-table-column prop="prompt" label="内容"></el-table-column>
+      <el-table-column prop="result" label="结果"></el-table-column>
       <el-table-column prop="timestamp" label="时间" width="180">
         <template slot-scope="{ row }">
           <span>{{ formatTimestamp(row.timestamp) }}</span>
