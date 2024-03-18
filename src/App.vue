@@ -16,21 +16,15 @@
       <el-menu-item index="/about">关于</el-menu-item>
       <el-submenu index="5" v-if="authorization">
         <template slot="title">管理员菜单</template>
-        <el-menu-item index="profile">用户管理</el-menu-item>
-        <el-menu-item index="4-2">订单管理</el-menu-item>
-        <el-menu-item index="4-3">地址管理</el-menu-item>
-        <el-menu-item index="4-4">愿望单</el-menu-item>
+        <el-menu-item index="/user-management">用户管理</el-menu-item>
+        <el-menu-item index="/website-config">网站管理</el-menu-item>
       </el-submenu>
       <el-submenu index="4" class="user-menu">
         <template slot="title">个人中心</template>
         <el-menu-item index="profile">个人信息管理</el-menu-item>
-        <!-- <el-menu-item index="4-2">订单管理</el-menu-item>
-        <el-menu-item index="4-3">地址管理</el-menu-item>
-        <el-menu-item index="4-4">愿望单</el-menu-item> -->
         <el-menu-item index="/login">登录</el-menu-item>
         <el-menu-item @click="logout">注销</el-menu-item>
       </el-submenu>
-      <!-- <el-menu-item index="/login" style="display:flex;">登陆</el-menu-item> -->
     </el-menu>
     <router-view/>
     <div class="copyright">
