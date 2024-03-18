@@ -11,6 +11,7 @@ import ProfileComponent from '../components/Profile.vue'
 import HistoryComponent from '../components/History.vue'
 import ForgetPassword from '../components/ForgetPassword.vue'
 import UserManagement from '../components/UserManagement.vue'
+import WebsiteConfig from '../components/WebsiteConfig.vue'
 
 export default new Router({
   routes: [
@@ -61,6 +62,13 @@ export default new Router({
       name: 'user-management',
       component: UserManagement,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/website-config',
+      name: 'website-config',
+      component: WebsiteConfig,
+      meta: { requiresAuth: true }
     }
+
   ]
 })
