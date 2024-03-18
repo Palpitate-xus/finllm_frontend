@@ -30,11 +30,11 @@ export default {
       const date = new Date(timestamp);
       return date.toLocaleString();
     },
-    async fetchHistory() {
-      await axiosInstance.get('/users/get_history')
+    async fetchUsers() {
+      await axiosInstance.get('/users/get_user_list')
         .then((response) => {
           console.log(response);
-          this.historyData = response.data.history;
+          this.historyData = response.data.users;
         })
         .catch((error) => {
           console.log(error);
