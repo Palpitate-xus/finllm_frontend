@@ -62,6 +62,7 @@ export default {
       let token = localStorage.getItem('token')
       if (token) {
         localStorage.removeItem('token')
+        localStorage.removeItem('role')
         this.$notify({
           title: '提示',
           message: '您已成功注销登录',
