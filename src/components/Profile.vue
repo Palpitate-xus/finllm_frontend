@@ -7,7 +7,6 @@
       <div class="info">
         <p><strong>用户名：</strong> {{ userInfo.username }}</p>
         <p><strong>Email：</strong> {{ userInfo.email }}</p>
-        <!-- <p><strong>手机号：</strong> {{ userInfo.phone }}</p> -->
       </div>
     </el-card>
     <el-card class="mt-20">
@@ -31,7 +30,7 @@
             <el-input v-model="settingsForm.email"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="settingsForm.phone" type="password"></el-input>
+            <el-input v-model="settingsForm.phone" type="password" show-password></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="saveSettings">保存</el-button>
@@ -65,10 +64,26 @@ export default {
     this.get_user_info()
   },
   methods: {
-    saveSettings() {
+    async saveSettings() {
       this.userInfo.name = this.settingsForm.name;
       this.userInfo.email = this.settingsForm.email;
-    
+      // 修改用户信息
+      await axiosInstance.post('/users/update_profile', this.settingsForm)
+        .then((response) => {
+          console.log(response);
+          this.$notify({
+            title: '提示',
+            message: '修改成功',
+            type: 'success'
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: '错误',
+            message: '修改失败，请检查用户名或邮箱',
+        })
+      })
       // 清空表单数据
       this.settingsForm.name = '';
       this.settingsForm.email = '';
