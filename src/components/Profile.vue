@@ -30,7 +30,7 @@
             <el-input v-model="settingsForm.email"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="settingsForm.phone" type="password" show-password></el-input>
+            <el-input v-model="settingsForm.password" type="password" show-password></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="saveSettings">保存</el-button>
@@ -71,9 +71,12 @@ export default {
       await axiosInstance.post('/users/update_profile', this.settingsForm)
         .then((response) => {
           console.log(response);
+          this.$route.push('/login')
+          localStorage.removeItem('token');
+          localStorage.removeItem('role');
           this.$notify({
             title: '提示',
-            message: '修改成功',
+            message: '修改成功，请重新登录',
             type: 'success'
           });
         })
