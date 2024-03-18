@@ -15,16 +15,13 @@
 </template>
 
 <script>
+import axiosInstance from '@/api';
 export default {
   name: 'HistoryComponent',
   data() {
     return {
       historyData: [
         { id: 1, action: '登录', timestamp: '2024-02-19 10:00:00' },
-        { id: 2, action: '修改资料', timestamp: '2024-02-19 10:30:00' },
-        { id: 3, action: '上传文件', timestamp: '2024-02-19 11:00:00' },
-        { id: 4, action: '退出登录', timestamp: '2024-02-19 12:00:00' },
-        // 可根据实际需求添加更多历史记录数据
       ]
     };
   },
@@ -32,6 +29,16 @@ export default {
     formatTimestamp(timestamp) {
       const date = new Date(timestamp);
       return date.toLocaleString();
+    },
+    async fetchHistory() {
+      await axiosInstance.get('/users/get_history')
+        .then((response) => {
+          console.log(response);
+          this.historyData = response.data.history;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
 };
