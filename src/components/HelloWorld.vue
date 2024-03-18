@@ -124,7 +124,7 @@ export default {
 .card-header {
   padding: 0 10px;
   text-align: center;
-  background-color: #f5f7fa;
+  /* background-color: #f5f7fa; */
 }
 
 .card-title {
