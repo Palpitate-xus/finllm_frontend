@@ -22,14 +22,14 @@
         <span>个人设置修改</span>
       </div>
       <div class="settings">
-        <el-form :model="settingsForm" label-width="100px">
-          <el-form-item label="用户名">
+        <el-form :model="settingsForm" :rules="settingsRules" label-width="100px">
+          <el-form-item prop="username" label="用户名">
             <el-input v-model="settingsForm.username"></el-input>
           </el-form-item>
-          <el-form-item label="Email">
+          <el-form-item prop="email" label="Email">
             <el-input v-model="settingsForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="密码">
+          <el-form-item prop="password" label="密码">
             <el-input v-model="settingsForm.password" type="password" show-password></el-input>
           </el-form-item>
           <el-form-item>
@@ -57,7 +57,12 @@ export default {
         username: '',
         email: '',
         password: ''
-      }
+      },
+      settingsRules: {
+        // username: [{ required: true, message: '用户名为空', trigger: 'blur' }],
+        // email: [{ required: true, message: '邮箱为空', trigger: 'blur' }],
+        password: [{ required: true, message: '密码为空', trigger: 'blur' }],
+      },
     };
   },
   mounted() {
@@ -65,8 +70,14 @@ export default {
   },
   methods: {
     async saveSettings() {
-      this.userInfo.name = this.settingsForm.name;
-      this.userInfo.email = this.settingsForm.email;
+      if(this.settingsForm.password === '') {
+        this.$notify({
+          title: '提示',
+          message: '密码为空',
+          type: 'warning'
+        })
+        return 0;
+      }
       // 修改用户信息
       await axiosInstance.post('/users/update_profile', this.settingsForm)
         .then((response) => {
