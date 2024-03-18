@@ -79,6 +79,7 @@ export default {
           .then((response) => {
                 console.log(response.data);
                 localStorage.setItem('token', response.data.access_token);
+                localStorage.setItem('role', response.data.role);
                 this.$notify({
                   title: '提示',
                   message: '登陆成功',
