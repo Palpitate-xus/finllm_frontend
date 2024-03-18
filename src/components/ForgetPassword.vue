@@ -43,7 +43,7 @@ methods: {
               console.log(response.data);
               this.$notify({
                 title: '提示',
-                message: '重置密码成功',
+                message: '重置密码成功，新密码已发送至邮箱，请注意查收',
                 type: 'success',
               });
               this.$router.push('/login');
