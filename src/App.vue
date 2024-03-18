@@ -10,7 +10,7 @@
         <i class="el-icon-menu"></i>
         <span slot="title">基于大模型的金融数据分析系统</span>
       </el-menu-item>
-      <el-menu-item index="/">首页</el-menu-item>
+      <!-- <el-menu-item index="/">首页</el-menu-item> -->
       <el-menu-item index="/qa">问答</el-menu-item>
       <el-menu-item index="/history">历史记录</el-menu-item>
       <el-menu-item index="/about">关于</el-menu-item>
