@@ -13,9 +13,20 @@
       <el-table-column prop="timestamp" label="操作" width="180">
         <template slot-scope="{ row }">
           <el-button @click="deleteUser(row)" type="danger" size="small">删除</el-button>
+          <el-button @click="banUser(row)" type="danger" size="small" v-if="!row.disabled">禁用</el-button>
+          <el-button @click="activeUser(row)" type="primary" size="small" v-if="row.disabled">启用</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[25, 50, 100, 200]"
+      :page-size="pagesize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
   </div>
 </template>
 
@@ -25,13 +36,22 @@ export default {
   name: 'UserManagement',
   data() {
     return {
-      userData: []
+      userData: [],
+      currentPage: 4,
+      pagesize: 25,
+      total: 0,
     };
   },
   mounted() {
     this.fetchUsers();
   },
   methods: {
+    handleSizeChange(val) {
+      this.pagesize = val;
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+    },
     formatTimestamp(timestamp) {
       const date = new Date(timestamp);
       return date.toLocaleString();
@@ -41,6 +61,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.userData = response.users;
+          this.total = response.length;
         })
         .catch((error) => {
           console.log(error);
@@ -66,4 +87,8 @@ export default {
 </script>
 
 <style scoped>
+.app-container {
+  padding: 10px;
+  margin: 10px;
+}
 </style>
