@@ -14,6 +14,13 @@
       <el-menu-item index="/qa">问答</el-menu-item>
       <el-menu-item index="/history">历史记录</el-menu-item>
       <el-menu-item index="/about">关于</el-menu-item>
+      <el-submenu index="5">
+        <template slot="title">管理员菜单</template>
+        <el-menu-item index="profile">用户管理</el-menu-item>
+        <el-menu-item index="4-2">订单管理</el-menu-item>
+        <el-menu-item index="4-3">地址管理</el-menu-item>
+        <el-menu-item index="4-4">愿望单</el-menu-item>
+      </el-submenu>
       <el-submenu index="4" class="user-menu">
         <template slot="title">个人中心</template>
         <el-menu-item index="profile">个人信息管理</el-menu-item>
