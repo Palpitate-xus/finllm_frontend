@@ -6,7 +6,7 @@
       class="el-menu-demo"
       mode="horizontal"
     >
-      <el-menu-item>
+      <el-menu-item index="/">
         <i class="el-icon-menu"></i>
         <span slot="title">基于大模型的金融数据分析系统</span>
       </el-menu-item>
@@ -52,8 +52,8 @@ export default {
   },
   watch: {
     $route(to,from){
-      console.log(from.path);//从哪来
-      console.log(to.path);//到哪去
+      console.log(from.path);  // 从哪来
+      console.log(to.path);  // 到哪去
       this.activeIndex = this.$route.path
     },
   },
