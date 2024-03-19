@@ -52,7 +52,7 @@
       <el-col :span="12">
         <el-card>
           <div slot="header" class="clearfix">
-            <span class="card-title">文件列表示例</span>
+            <span class="card-title">文件列表</span>
           </div>
           <el-table :data="fileList" stripe class="table">
             <el-table-column prop="name" label="名称"></el-table-column>
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import axiosInstance from '@/api';
 export default {
   name: 'HelloWorld',
   data() {
@@ -97,7 +98,21 @@ export default {
         '公告3'
       ]
     };
-  }
+  },
+  methods: {
+    // 获取首页信息
+    async getBasicInfo() {
+      await axiosInstance.get('/llms/get_basic_info')
+        .then((response) => {
+          console.log(response.data);
+          this.basicInfo = response.data.basic_info;
+          this.financeInfo = response.data.finance_info;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 
