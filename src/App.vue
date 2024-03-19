@@ -23,8 +23,8 @@
       <el-submenu index="4" class="user-menu">
         <template slot="title">个人中心</template>
         <el-menu-item index="profile">个人信息管理</el-menu-item>
-        <el-menu-item index="/login">登录</el-menu-item>
-        <el-menu-item @click="logout">注销</el-menu-item>
+        <el-menu-item index="/login" v-if="!isLogin">登录</el-menu-item>
+        <el-menu-item @click="logout" v-if="isLogin">注销</el-menu-item>
       </el-submenu>
     </el-menu>
     <router-view/>
@@ -47,9 +47,14 @@ export default {
     this.activeIndex = this.$route.path
   },
   computed:{
+    // 前端判断用户权限
     authorization() {
       return localStorage.getItem('role')=="admin"
-    }
+    },
+    // 判断是否为登陆状态
+    isLogin() {
+      return localStorage.getItem('token') != null
+    },  
   },
   watch: {
     $route(to,from){
