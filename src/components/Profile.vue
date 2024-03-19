@@ -129,6 +129,9 @@ export default {
 <style scoped>
 .personal-center {
   padding: 20px;
+  margin: auto;
+  min-width: 500px;
+  width: 50%;
 }
 
 .title {
