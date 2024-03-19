@@ -106,8 +106,8 @@
           });
       },
       async handleClick2() {
-        await axiosInstance.post('/llms/analyze_finance', {
-          text: this.message,
+        await axiosInstance.post('/llms/analyze_report', {
+          text: this.filepath,
           name: "test",
           description: "财报分析"
         })
