@@ -5,7 +5,7 @@ import { Notification } from 'element-ui'
 // 创建一个 axios 实例
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8001/',
-  timeout: 10000 // 请求超时时间
+  timeout: 100000 // 请求超时时间
 });
 
 // 添加请求拦截器
