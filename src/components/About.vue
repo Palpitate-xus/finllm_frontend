@@ -1,10 +1,11 @@
 <template>
   <div class="about">
     <h1 class="title">关于我们</h1>
+
     <div class="author-info">
       <!-- <img src="author-avatar.jpg" alt="Author Avatar" class="avatar"> -->
       <div class="info">
-        <h2>作者：xus</h2>
+        <h2>作者：徐盛</h2>
         <p>Email：palpitate.xus@mail.ecust.edu.cn</p>
         <p>个人网站：<a href="https://github.com/Palpitate-xus">https://github.com/Palpitate-xus</a></p>
       </div>
