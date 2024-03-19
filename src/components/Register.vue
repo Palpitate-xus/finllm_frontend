@@ -16,8 +16,8 @@
             <el-input type="password" v-model="registerForm.confirmPassword" placeholder="请再次输入密码"></el-input>
           </el-form-item>
           <el-form-item class="button-container">
-            <el-button type="primary" @click="register">注册</el-button>
-            <el-button @click="goToLogin">登录</el-button>
+            <el-button @click="register">注册</el-button>
+            <el-button type="primary" @click="goToLogin">登录</el-button>
           </el-form-item>
         </el-form>
       </el-card>
