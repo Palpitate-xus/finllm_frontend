@@ -1,16 +1,71 @@
 <template>
   <div class="home">
-    <!-- 公告栏 -->
-    <el-card class="el-card">
+    <el-row :gutter="20">
+      <el-col :span="12" :key="1">
+        <el-card class="el-card">
+          <div slot="header" class="clearfix">
+            <span class="card-title">热点新闻</span>
+          </div>
+          <div class="notice-list" v-loading="news_loading">
+            <ul>
+              <li v-for="(item, index) in news" :key="index" :title="item.abstract">
+                <a :href="item.source" target="_blank">{{ item.title }}</a>
+              </li>
+            </ul>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="12" :key="2">
+        <el-card class="el-card">
+          <div slot="header" class="clearfix">
+            <span class="card-title">股票热度</span>
+          </div>
+          <div>
+            <el-table
+              v-loading="loading"
+              :data="stocks"
+              style="width: 100%">
+              <el-table-column
+                prop="code"
+                label="代码"
+              >
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="名称"
+              >
+              </el-table-column>
+              <el-table-column
+                prop="focus_count"
+                label="热度"
+              >
+              </el-table-column>
+              <el-table-column
+                prop="price"
+                label="当前股价"
+              >
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+
+
+    <!-- <el-card class="el-card">
       <div slot="header" class="clearfix">
-        <span class="card-title">基于大模型的金融数据分析系统</span>
+        <span class="card-title">热点新闻</span>
       </div>
       <div class="notice-list">
         <ul>
-          <li v-for="(item, index) in notices" :key="index">{{ item }}</li>
+          <li v-for="(item, index) in news" :key="index" :title="item.abstract">
+            <a :href="item.source" target="_blank">{{ item.title }}</a>
+          </li>
         </ul>
       </div>
-    </el-card>
+    </el-card> -->
+
+
     <el-row :gutter="20">
       <!-- 用户数量、数据数量、文件数量卡片 -->
       <el-col :span="8" v-for="(item, index) in basicInfo" :key="index">
@@ -72,6 +127,10 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
+      news: [],
+      stocks: [],
+      loading: true,
+      news_loading: true,
       basicInfo: [
         { title: '用户数量', value: 100 },
         { title: '数据数量', value: 500 },
@@ -99,6 +158,10 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.getNews();
+    this.getStocks();
+  },
   methods: {
     // 获取首页信息
     async getBasicInfo() {
@@ -112,11 +175,46 @@ export default {
           console.log(error);
         });
     },
+    async getNews() {
+      await axiosInstance.get('/index/easymoney_news')
+        .then((response) => {
+          console.log(response);
+          this.news = response.news;
+          this.news_loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: '错误',
+            message: '获取首页信息失败',
+            type: 'error'
+          });
+        });
+    },
+    async getStocks() {
+      await axiosInstance.get('/index/xueqiu_hot')
+        .then((response) => {
+          console.log(response);
+          this.stocks = response.stocks;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: '错误',
+            message: '获取股票信息失败',
+            type: 'error'
+          });
+      })
+    }
   },
 };
 </script>
 
 <style scoped>
+a {
+  color: #292626;
+}
 
 .el-card {
   margin: 10px;
