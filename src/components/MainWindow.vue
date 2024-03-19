@@ -1,5 +1,6 @@
 <template>
-    <el-container direction="vertical">
+  <div class="main-window">
+    <el-container direction="vertical" class="main-container">
       <el-row>
         <el-col :span="8">
           <el-input
@@ -9,6 +10,15 @@
             placeholder="请输入内容"
             v-model="message"
           ></el-input>
+        </el-col>
+        <el-col :span="6" class="button-column">
+          <el-button @click="handleClick1">情感分析</el-button>
+          <el-button @click="handleClick2">财报分析</el-button>
+          <el-button @click="handleClick3">文本总结</el-button>
+          <el-button @click="handleClick4">市场预测</el-button>
+          <el-button @click="handleClick5">风险评估</el-button>
+          <el-button @click="handleClick6">事件分析</el-button>
+          <el-button @click="handleClick7">行业研究</el-button>
           <el-upload
             action="http://127.0.0.1:8001/llms/upload/"
             :headers="authorization"
@@ -20,17 +30,7 @@
             :limit="1"
           >
             <el-button slot="trigger" size="small" type="primary">上传文件</el-button>
-            <!-- <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button> -->
           </el-upload>
-        </el-col>
-        <el-col :span="8" class="button-column">
-          <el-button @click="handleClick1">情感分析</el-button>
-          <el-button @click="handleClick2">财报分析</el-button>
-          <el-button @click="handleClick3">文本总结</el-button>
-          <el-button @click="handleClick4">市场预测</el-button>
-          <el-button @click="handleClick5">风险评估</el-button>
-          <el-button @click="handleClick6">事件分析</el-button>
-          <el-button @click="handleClick7">行业研究</el-button>
         </el-col>
         <el-col :span="8">
           <el-input
@@ -44,6 +44,8 @@
         </el-col>
       </el-row>
     </el-container>
+  </div>
+    
   </template>
   
   <script>
@@ -67,7 +69,7 @@
         console.log('submitUpload');
       },
       handlePreview(file) {
-        console.log('File preview:', file);
+        console.log(file);
       },
       handleRemove(file, fileList) {
         console.log('Remove uploaded file:', file, fileList);
@@ -222,6 +224,11 @@
   </script>
   
   <style scoped>
+  .main-container {
+    display: flex;
+    margin: auto;
+  }
+
   .el-row {
     height: 100vh;
   }
@@ -235,7 +242,7 @@
   }
 
   .button-column {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
