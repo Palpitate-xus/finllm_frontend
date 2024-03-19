@@ -1,9 +1,14 @@
 <template>
   <div class="history-page">
     <el-table :data="historyData" stripe style="width: 100%">
-      <el-table-column prop="id" label="ID" width="80"></el-table-column>
-      <el-table-column prop="action" label="操作"></el-table-column>
+      <el-table-column prop="id" label="ID" width="180"></el-table-column>
+      <el-table-column prop="action" label="操作" width="90"></el-table-column>
       <el-table-column prop="prompt" label="内容"></el-table-column>
+      <el-table-column prop="content" label="文件">
+        <template slot-scope="{ row }">
+          <span>{{ row.content!='None' ? row.content : '无' }}</span>
+        </template>
+      </el-table-column>
       <el-table-column prop="result" label="结果"></el-table-column>
       <el-table-column prop="timestamp" label="时间" width="180">
         <template slot-scope="{ row }">
@@ -29,13 +34,14 @@ export default {
   name: 'HistoryComponent',
   data() {
     return {
-      historyData: [
-        { id: 1, action: '登录', timestamp: '2024-02-19 10:00:00' },
-      ],
-      currentPage: 4,
+      historyData: [],
+      currentPage: 1,
       pagesize: 25,
       total: 0,
     };
+  },
+  mounted() {
+    this.fetchHistory();
   },
   methods: {
     handleSizeChange(val) {
@@ -52,7 +58,8 @@ export default {
       await axiosInstance.get('/users/get_history')
         .then((response) => {
           console.log(response);
-          this.historyData = response.data.history;
+          this.historyData = response.history;
+          this.total = response.length;
         })
         .catch((error) => {
           console.log(error);
