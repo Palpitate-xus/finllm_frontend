@@ -12,9 +12,9 @@
       </el-table-column>
       <el-table-column prop="timestamp" label="操作" width="180">
         <template slot-scope="{ row }">
-          <el-button @click="deleteUser(row)" type="danger" size="small">删除</el-button>
-          <el-button @click="banUser(row)" type="danger" size="small" v-if="!row.disabled">禁用</el-button>
-          <el-button @click="activeUser(row)" type="primary" size="small" v-if="row.disabled">启用</el-button>
+          <!-- <el-button @click="deleteUser(row)" type="danger" size="small">删除</el-button> -->
+          <el-button @click="disableUser(row)" type="danger" size="small" v-if="!row.disabled">禁用</el-button>
+          <el-button @click="enableUser(row)" type="primary" size="small" v-if="row.disabled">启用</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -80,6 +80,46 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+      })
+    },
+    async disableUser(row) {
+      await axiosInstance.post('/users/disable_user', row)
+        .then((response) => {
+          console.log(response);
+          this.$notify({
+            title: '提示',
+            message: '禁用成功',
+            type: 'success'
+          });
+          this.fetchUsers();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: error.message,
+            message: error.response.data.detail,
+            type: 'error'
+          });
+      })
+    },
+    async enableUser(row) {
+      await axiosInstance.post('/users/enable_user', row)
+        .then((response) => {
+          console.log(response);
+          this.$notify({
+            title: '提示',
+            message: '启用成功',
+            type: 'success'
+          });
+          this.fetchUsers();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: error.message,
+            message: error.response.data.detail,
+            type: 'error'
+          });
       })
     },
   }
