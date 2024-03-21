@@ -49,7 +49,7 @@ export default {
   computed:{
     // 前端判断用户权限
     authorization() {
-      return localStorage.getItem('role')=="admin"
+      return localStorage.getItem('role')=="admin" && localStorage.getItem('token') != null
     },
     // 判断是否为登陆状态
     isLogin() {
