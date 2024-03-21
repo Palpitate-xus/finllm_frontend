@@ -67,30 +67,28 @@
 
 
     <el-row :gutter="20">
-      <!-- 用户数量、数据数量、文件数量卡片 -->
-      <el-col :span="8" v-for="(item, index) in basicInfo" :key="index">
+      <el-col :span="4" v-for="(item, index) in basicInfo" :key="index">
         <el-card class="info-card">
           <div slot="header" class="card-header">
-            <span class="card-title">{{ item.title }}</span>
+            <span class="card-title">{{ item.name }}</span>
           </div>
-          <div class="card-content">{{ item.value }}</div>
+          <div class="card-content">{{ item.new }}</div>
         </el-card>
       </el-col>
     </el-row>
 
-    <!-- 访问量、收入、支出卡片 -->
     <el-row :gutter="20" class="mt-20">
-      <el-col :span="8" v-for="(item, index) in financeInfo" :key="index">
+      <el-col :span="4" v-for="(item, index) in financeInfo" :key="index">
         <el-card class="info-card">
           <div slot="header" class="card-header">
-            <span class="card-title">{{ item.title }}</span>
+            <span class="card-title">{{ item.name }}</span>
           </div>
-          <div class="card-content">{{ item.value }}</div>
+          <div class="card-content">{{ item.new }}</div>
         </el-card>
       </el-col>
     </el-row>
     
-    <!-- 数据列表示例和文件列表示例 -->
+
     <el-row :gutter="20" class="mt-20">
       <el-col :span="12">
         <el-card>
@@ -131,16 +129,8 @@ export default {
       stocks: [],
       loading: true,
       news_loading: true,
-      basicInfo: [
-        { title: '用户数量', value: 100 },
-        { title: '数据数量', value: 500 },
-        { title: '文件数量', value: 200 }
-      ],
-      financeInfo: [
-        { title: '访问量', value: 10000 },
-        { title: '收入', value: 10000 },
-        { title: '支出', value: 5000 }
-      ],
+      basicInfo: [],
+      financeInfo: [],
       dataList: [
         { name: '股吧数据', type: '社交媒体', size: '100KB' },
         { name: '财经新闻', type: '新闻', size: '200KB' },
@@ -151,30 +141,14 @@ export default {
         { name: '文件2', format: '格式2', size: '200KB' },
         { name: '文件3', format: '格式3', size: '300KB' }
       ],
-      notices: [
-        '公告1',
-        '公告2',
-        '公告3'
-      ]
     };
   },
   mounted() {
     this.getNews();
+    this.getBasicInfo();
     this.getStocks();
   },
   methods: {
-    // 获取首页信息
-    async getBasicInfo() {
-      await axiosInstance.get('/llms/get_basic_info')
-        .then((response) => {
-          console.log(response.data);
-          this.basicInfo = response.data.basic_info;
-          this.financeInfo = response.data.finance_info;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
     async getNews() {
       await axiosInstance.get('/index/easymoney_news')
         .then((response) => {
@@ -206,6 +180,22 @@ export default {
             type: 'error'
           });
       })
+    },
+    async getBasicInfo() {
+      await axiosInstance.get('/index/index_data')
+        .then((response) => {
+          console.log(response.data);
+          this.basicInfo = response.index.slice(0, 6);
+          this.financeInfo = response.index.slice(6, 12);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: '错误',
+            message: '获取首页信息失败',
+            type: 'error'
+          });
+        });
     }
   },
 };
