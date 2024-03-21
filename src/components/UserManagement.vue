@@ -7,7 +7,7 @@
       <el-table-column prop="role" label="角色"></el-table-column>
       <el-table-column prop="disabled" label="状态" width="124">
         <template slot-scope="{ row }">
-          <el-tag>{{ row.disabled ? '已禁用' : '正常' }}</el-tag>
+          <el-tag :type="row.disabled ? 'danger' : 'success'">{{ row.disabled ? '已禁用' : '正常' }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="timestamp" label="操作" width="180">
