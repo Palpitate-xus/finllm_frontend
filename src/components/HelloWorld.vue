@@ -5,6 +5,7 @@
         <el-card class="el-card">
           <div slot="header" class="clearfix">
             <span class="card-title">热点新闻</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="getNews">刷新</el-button>
           </div>
           <div class="notice-list" v-loading="news_loading">
             <ul>
@@ -19,6 +20,7 @@
         <el-card class="el-card">
           <div slot="header" class="clearfix">
             <span class="card-title">股票热度</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="getStocks">刷新</el-button>
           </div>
           <div>
             <el-table
@@ -89,7 +91,7 @@
     </el-row>
     
 
-    <el-row :gutter="20" class="mt-20">
+    <!-- <el-row :gutter="20" class="mt-20">
       <el-col :span="12">
         <el-card>
           <div slot="header" class="clearfix">
@@ -114,7 +116,7 @@
           </el-table>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
 
   </div>
 </template>
