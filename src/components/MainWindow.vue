@@ -113,7 +113,7 @@
         })
           .then((response) => {
             console.log(response);
-            this.output = response.finance_score;
+            this.output = response.analyze_res;
           })
           .catch((error) => {
             console.log(error);
@@ -170,7 +170,7 @@
         })
           .then((response) => {
             console.log(response);
-            this.output = response.risk_score;
+            this.output = response.risk_res;
           })
           .catch((error) => {
             console.log(error);
@@ -189,7 +189,7 @@
         })
           .then((response) => {
             console.log(response);
-            this.output = response.event_analysis_res;
+            this.output = response.event_res;
           })
           .catch((error) => {
             console.log(error);
