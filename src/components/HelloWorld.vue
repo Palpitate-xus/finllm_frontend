@@ -146,9 +146,9 @@ export default {
     };
   },
   mounted() {
+    this.getStocks();
     this.getNews();
     this.getBasicInfo();
-    this.getStocks();
   },
   methods: {
     async getNews() {
