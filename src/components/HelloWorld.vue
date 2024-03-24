@@ -146,8 +146,8 @@ export default {
     };
   },
   mounted() {
-    this.getStocks();
     this.getNews();
+    this.getStocks();
     this.getBasicInfo();
   },
   methods: {
