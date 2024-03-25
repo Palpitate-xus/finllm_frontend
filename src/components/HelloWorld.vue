@@ -117,7 +117,7 @@
                     :title="item.name"
                   >
                     <template slot="suffix">
-                      <i class="el-icon-s-flag" :style="item.de > 0 ? 'color: red' : 'color: blue'"></i>
+                      <i :class="item.de > 0 ? 'el-icon-caret-top' : 'el-icon-caret-bottom'" :style="item.de > 0 ? 'color: red' : 'color: blue'"></i>
                     </template>
                   </el-statistic>
                   <!-- <div slot="header" class="card-header">
