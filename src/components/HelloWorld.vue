@@ -1,59 +1,5 @@
 <template>
   <div class="home">
-    <el-row :gutter="20">
-      <el-col :span="12" :key="1">
-        <el-card class="el-card">
-          <div slot="header" class="clearfix">
-            <span class="card-title">热点新闻</span>
-            <el-button style="float: right; padding: 3px 0" type="text" @click="getNews">刷新</el-button>
-          </div>
-          <div class="notice-list" v-loading="news_loading">
-            <ul>
-              <li v-for="(item, index) in news" :key="index" :title="item.abstract">
-                <a :href="item.source" target="_blank">{{ item.title }}</a>
-              </li>
-            </ul>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="12" :key="2">
-        <el-card class="el-card">
-          <div slot="header" class="clearfix">
-            <span class="card-title">股票热度</span>
-            <el-button style="float: right; padding: 3px 0" type="text" @click="getStocks">刷新</el-button>
-          </div>
-          <div>
-            <el-table
-              v-loading="loading"
-              :data="stocks"
-              style="width: 100%">
-              <el-table-column
-                prop="code"
-                label="代码"
-              >
-              </el-table-column>
-              <el-table-column
-                prop="name"
-                label="名称"
-              >
-              </el-table-column>
-              <el-table-column
-                prop="focus_count"
-                label="热度"
-              >
-              </el-table-column>
-              <el-table-column
-                prop="price"
-                label="当前股价"
-              >
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-
     <!-- <el-card class="el-card">
       <div slot="header" class="clearfix">
         <span class="card-title">热点新闻</span>
@@ -68,18 +14,24 @@
     </el-card> -->
 
 
-    <el-row :gutter="20">
-      <el-col :span="4" v-for="(item, index) in basicInfo" :key="index">
-        <el-card class="info-card">
-          <div slot="header" class="card-header">
+    <!-- <el-row :gutter="20"> -->
+      <!-- <el-col :span="4" v-for="(item, index) in basicInfo" :key="index"> -->
+        <!-- <el-card class="info-card"> -->
+          <!-- <el-statistic
+            group-separator=","
+            :precision="2"
+            :value="item.new"
+            :title="item.name"
+          ></el-statistic> -->
+          <!-- <div slot="header" class="card-header">
             <span class="card-title">{{ item.name }}</span>
           </div>
           <div class="card-content">{{ item.new }}</div>
-        </el-card>
-      </el-col>
-    </el-row>
+        </el-card> -->
+      <!-- </el-col>
+    </el-row> -->
 
-    <el-row :gutter="20" class="mt-20">
+    <!-- <el-row :gutter="20" class="mt-20">
       <el-col :span="4" v-for="(item, index) in financeInfo" :key="index">
         <el-card class="info-card">
           <div slot="header" class="card-header">
@@ -88,36 +40,97 @@
           <div class="card-content">{{ item.new }}</div>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
     
 
-    <!-- <el-row :gutter="20" class="mt-20">
-      <el-col :span="12">
-        <el-card>
-          <div slot="header" class="clearfix">
-            <span class="card-title">数据列表</span>
-          </div>
-          <el-table :data="dataList" stripe class="table">
-            <el-table-column prop="name" label="名称"></el-table-column>
-            <el-table-column prop="type" label="类型"></el-table-column>
-            <el-table-column prop="size" label="大小"></el-table-column>
-          </el-table>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card>
-          <div slot="header" class="clearfix">
-            <span class="card-title">文件列表</span>
-          </div>
-          <el-table :data="fileList" stripe class="table">
-            <el-table-column prop="name" label="名称"></el-table-column>
-            <el-table-column prop="format" label="格式"></el-table-column>
-            <el-table-column prop="size" label="大小"></el-table-column>
-          </el-table>
-        </el-card>
-      </el-col>
-    </el-row> -->
+    <el-container>
+      <el-header>
+        <el-carousel indicator-position="none" arrow="never" direction="vertical" :interval="2500">
+          <el-carousel-item v-for="(item, index) in news" :key="index" class="notice_item">
+            <!-- <img src="" alt=""> -->
+            <el-link href="item.source" type="primary">最新新闻: {{ item.title }}</el-link>
+          </el-carousel-item>
+        </el-carousel>
+      </el-header>
+      <el-container>
+        <el-aside width="200px">
+          <el-card class="el-card">
+            <div slot="header" class="clearfix">
+              <span class="card-title">股票热度</span>
+              <el-button style="float: right; padding: 3px 0" type="text" @click="getStocks">刷新</el-button>
+            </div>
+            <div>
+              <el-table
+                v-loading="loading"
+                :data="stocks"
+                style="width: 100%">
+                <el-table-column
+                  prop="code"
+                  label="代码"
+                >
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="名称"
+                >
+                </el-table-column>
+                <el-table-column
+                  prop="focus_count"
+                  label="热度"
+                >
+                </el-table-column>
+                <el-table-column
+                  prop="price"
+                  label="当前股价"
+                >
+                </el-table-column>
+              </el-table>
+            </div>
+          </el-card>
+        </el-aside>
+        <el-container>
+          <el-main>
 
+            <!-- <el-card class="el-card">
+              <div slot="header" class="clearfix">
+                <span class="card-title">热点新闻</span>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="getNews">刷新</el-button>
+              </div>
+              <div class="notice-list" v-loading="news_loading">
+                <ul>
+                  <li v-for="(item, index) in news" :key="index" :title="item.abstract">
+                    <a :href="item.source" target="_blank">{{ item.title }}</a>
+                  </li>
+                </ul>
+              </div>
+            </el-card> -->
+
+          </el-main>
+          <el-footer>
+            <el-row :gutter="20">
+              <el-col :span="4" v-for="(item, index) in basicInfo" :key="index">
+                <!-- <el-card class="info-card"> -->
+                  <el-statistic
+                    group-separator=","
+                    :precision="2"
+                    :value="item.new"
+                    :title="item.name"
+                  >
+                    <template slot="suffix">
+                      <i class="el-icon-s-flag" :style="item.de > 0 ? 'color: red' : 'color: blue'"></i>
+                    </template>
+                  </el-statistic>
+                  <!-- <div slot="header" class="card-header">
+                    <span class="card-title">{{ item.name }}</span>
+                  </div>
+                  <div class="card-content">{{ item.new }}</div>
+                </el-card> -->
+              </el-col>
+            </el-row>
+          </el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
@@ -133,16 +146,6 @@ export default {
       news_loading: true,
       basicInfo: [],
       financeInfo: [],
-      dataList: [
-        { name: '股吧数据', type: '社交媒体', size: '100KB' },
-        { name: '财经新闻', type: '新闻', size: '200KB' },
-        { name: '开源数据', type: '开源数据', size: '300KB' }
-      ],
-      fileList: [
-        { name: '文件1', format: '格式1', size: '100KB' },
-        { name: '文件2', format: '格式2', size: '200KB' },
-        { name: '文件3', format: '格式3', size: '300KB' }
-      ],
     };
   },
   mounted() {
@@ -188,7 +191,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.basicInfo = response.index.slice(0, 6);
-          this.financeInfo = response.index.slice(6, 12);
+          // this.financeInfo = response.index.slice(6, 12);
         })
         .catch((error) => {
           console.log(error);
@@ -206,20 +209,6 @@ export default {
 <style scoped>
 a {
   color: #292626;
-}
-
-.el-card {
-  margin: 10px;
-  /* padding: 10px; */
-}
-
-.home {
-  padding: 20px;
-}
-
-.title {
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .info-card {
