@@ -45,7 +45,7 @@
 
     <el-container>
       <el-header>
-        <el-carousel indicator-position="none" arrow="never" direction="vertical" :interval="2500">
+        <el-carousel indicator-position="none" arrow="never" direction="horizontal" :interval="2500">
           <el-carousel-item v-for="(item, index) in news" :key="index" class="notice_item">
             <!-- <img src="" alt=""> -->
             <el-link href="item.source" type="primary">最新新闻: {{ item.title }}</el-link>
