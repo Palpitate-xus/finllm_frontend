@@ -9,7 +9,7 @@
           <span>{{ row.content!='None' ? row.content : '无' }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="result" label="结果"></el-table-column>
+      <el-table-column prop="result" label="结果" :show-overflow-tooltip='true' ></el-table-column>
       <el-table-column prop="timestamp" label="时间" width="180">
         <template slot-scope="{ row }">
           <span>{{ formatTimestamp(row.timestamp) }}</span>
