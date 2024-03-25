@@ -22,7 +22,6 @@
           <el-upload
             action="http://127.0.0.1:8001/llms/upload/"
             :headers="authorization"
-            :on-preview="handlePreview"
             :on-remove="handleRemove"
             :before-remove="beforeRemove"
             :on-success="fileUploaded"
