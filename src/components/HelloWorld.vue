@@ -48,16 +48,16 @@
         <el-carousel indicator-position="none" arrow="never" direction="horizontal" :interval="2500">
           <el-carousel-item v-for="(item, index) in news" :key="index" class="notice_item">
             <!-- <img src="" alt=""> -->
-            <el-link href="item.source" type="primary">最新新闻: {{ item.title }}</el-link>
+            <el-link :href="item.source" type="primary">最新新闻: {{ item.title }}</el-link>
           </el-carousel-item>
         </el-carousel>
       </el-header>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="400px">
           <el-card class="el-card">
             <div slot="header" class="clearfix">
               <span class="card-title">股票热度</span>
-              <el-button style="float: right; padding: 3px 0" type="text" @click="getStocks">刷新</el-button>
+              <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="getStocks">刷新</el-button> -->
             </div>
             <div>
               <el-table
