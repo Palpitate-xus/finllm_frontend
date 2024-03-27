@@ -44,13 +44,6 @@ export default {
   align-items: center;
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-right: 20px;
-}
-
 .info {
   flex: 1;
 }
