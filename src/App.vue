@@ -18,7 +18,7 @@
       <el-submenu index="5" v-if="authorization">
         <template slot="title">管理员菜单</template>
         <el-menu-item index="/user-management">用户管理</el-menu-item>
-        <el-menu-item index="/website-config">网站管理</el-menu-item>
+        <!-- <el-menu-item index="/website-config">网站管理</el-menu-item> -->
       </el-submenu>
       <el-submenu index="4" class="user-menu">
         <template slot="title">个人中心</template>
