@@ -3,7 +3,7 @@
     <el-table :data="historyData" v-loading="loading" stripe style="width: 100%">
       <el-table-column prop="id" label="ID" width="180"></el-table-column>
       <el-table-column prop="action" label="操作" width="90"></el-table-column>
-      <el-table-column prop="prompt" label="内容"></el-table-column>
+      <el-table-column prop="prompt" label="内容" :show-overflow-tooltip='true'></el-table-column>
       <el-table-column prop="content" label="文件">
         <template slot-scope="{ row }">
           <span>{{ row.content!='None' ? row.content : '无' }}</span>
