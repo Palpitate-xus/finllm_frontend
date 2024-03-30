@@ -1,15 +1,15 @@
 <template>
   <div class="history-page">
     <el-table :data="historyData" v-loading="loading" stripe style="width: 100%">
-      <el-table-column prop="id" label="ID" width="180"></el-table-column>
-      <el-table-column prop="action" label="操作" width="90"></el-table-column>
-      <el-table-column prop="prompt" label="内容" :show-overflow-tooltip='true'></el-table-column>
-      <el-table-column prop="content" label="文件">
+      <el-table-column prop="id" label="ID"></el-table-column>
+      <el-table-column prop="user_id" label="用户ID"></el-table-column>
+      <el-table-column prop="action" label="操作"></el-table-column>
+      <!-- <el-table-column prop="prompt" label="内容" :show-overflow-tooltip='true'></el-table-column> -->
+      <!-- <el-table-column prop="content" label="文件">
         <template slot-scope="{ row }">
           <span>{{ row.content!='None' ? row.content : '无' }}</span>
         </template>
-      </el-table-column>
-      <el-table-column prop="result" label="结果" :show-overflow-tooltip='true' ></el-table-column>
+      </el-table-column> -->
       <el-table-column prop="timestamp" label="时间" width="180">
         <template slot-scope="{ row }">
           <span>{{ formatTimestamp(row.timestamp) }}</span>
@@ -56,7 +56,7 @@ export default {
       return date.toLocaleString();
     },
     async fetchHistory() {
-      await axiosInstance.get('/users/get_history')
+      await axiosInstance.get('/users/user_log')
         .then((response) => {
           console.log(response);
           this.historyData = response.history;
