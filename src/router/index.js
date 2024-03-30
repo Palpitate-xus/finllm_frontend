@@ -13,6 +13,7 @@ import ForgetPassword from '../components/ForgetPassword.vue'
 import UserManagement from '../components/UserManagement.vue'
 import WebsiteConfig from '../components/WebsiteConfig.vue'
 import HelpDocs from '../components/HelpDocs.vue'
+import LogComponent from '../components/Log.vue'
 
 export default new Router({
   routes: [
@@ -74,7 +75,12 @@ export default new Router({
       name: 'website-config',
       component: WebsiteConfig,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/log',
+      name: 'log',
+      component: LogComponent,
+      meta: { requiresAuth: true }
     }
-
   ]
 })
