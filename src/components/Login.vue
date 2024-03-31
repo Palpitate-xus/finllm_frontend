@@ -4,10 +4,10 @@
         <h3>{{ title }}</h3>
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-width="80px">
           <el-form-item label="用户名" prop="username">
-            <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
+            <el-input v-model="loginForm.username" placeholder="请输入用户名" style="{background-color: rgba(255, 255, 255, 0.8);}"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" show-password></el-input>
+            <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" style="{background-color: rgba(255, 255, 255, 0.8);}" show-password></el-input>
           </el-form-item>
           <el-form-item class="button-container">
             <el-button @click="goToRegister" class="register-button">注册</el-button>
@@ -107,21 +107,26 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 75vh;
+    height: 80vh;
+    background-image: url("../../static/background.jpg");
+    background-size: cover;
   }
   
   .login-card {
     width: 400px;
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
   }
   
   .button-container {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
   }
   
   .forgot-password-button {
     color: #909399;
+    background-color: rgba(255, 255, 255, 0.8);
   }
   </style>
