@@ -10,11 +10,13 @@
           <el-tag :type="row.disabled ? 'danger' : 'success'">{{ row.disabled ? '已禁用' : '正常' }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="timestamp" label="操作" width="180">
+      <el-table-column prop="timestamp" label="操作">
         <template slot-scope="{ row }">
           <!-- <el-button @click="deleteUser(row)" type="danger" size="small">删除</el-button> -->
           <el-button @click="disableUser(row)" type="danger" size="small" v-if="!row.disabled">禁用</el-button>
           <el-button @click="enableUser(row)" type="primary" size="small" v-if="row.disabled">启用</el-button>
+          <el-button @click="admin(row)" type="primary" size="small" v-if="row.role != 'admin' && authorization">设为管理员</el-button>
+          <el-button @click="deadmin(row)" type="danger" size="small" v-if="row.role == 'admin' && authorization">取消管理员权限</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -41,6 +43,12 @@ export default {
       pagesize: 25,
       total: 0,
     };
+  },
+  computed:{
+    // 前端判断用户权限
+    authorization() {
+      return localStorage.getItem('role')=="superadmin" && localStorage.getItem('token') != null
+    },
   },
   mounted() {
     this.fetchUsers();
@@ -122,6 +130,48 @@ export default {
           });
       })
     },
+    async admin(row){
+      row.role = 'admin';
+      await axiosInstance.post('/users/role', row)
+        .then((response) => {
+          console.log(response);
+          this.$notify({
+            title: '提示',
+            message: '已设为管理员',
+            type: 'success'
+          });
+          this.fetchUsers();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: error.message,
+            message: error.response.data.detail,
+            type: 'error'
+          });
+      })
+    },
+    async deadmin(row){
+      row.role = 'user'
+      await axiosInstance.post('/users/role', row)
+        .then((response) => {
+          console.log(response);
+          this.$notify({
+            title: '提示',
+            message: '已取消其管理员权限',
+            type: 'success'
+          });
+          this.fetchUsers();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: error.message,
+            message: error.response.data.detail,
+            type: 'error'
+          });
+      })
+    }
   }
 }
 </script>
