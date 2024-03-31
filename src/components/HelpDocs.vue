@@ -1,6 +1,6 @@
 <template>
   <div class="doc-container">
-    <el-collapse v-model="activeNames" @change="handleChange" accordion>
+    <el-collapse v-model="activeNames" @change="handleChange" class="collapse-container" accordion>
       <el-collapse-item title="情感分析 Sentiment Analysis" name="1">
         <div>使用大型语言模型来识别文本中的情感倾向，给出一个介于1-10之间的分值，1表示非常负面，10表示非常正面。</div>
         <div>这种分析有助于了解公众对特定话题、产品、品牌或事件的感受，从而指导企业决策、品牌管理和市场营销策略。</div>
@@ -66,8 +66,16 @@ export default {
 <style>
 .doc-container {
   padding: 20px;
-  width: 75%;
+  /* width: 75%; */
+  height: 75vh;
   margin: auto;
+  /* background-image: url("../../static/background.jpg");
+  background-size: cover; */
 }
+
+.collapse-container {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 </style>
 

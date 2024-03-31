@@ -38,6 +38,7 @@ export default {
 <style scoped>
 .about {
   padding: 20px;
+  height: 75vh;
   background-image: url("../../static/background.jpg");
   background-size: cover;
 }

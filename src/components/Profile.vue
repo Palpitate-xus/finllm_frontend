@@ -1,6 +1,6 @@
 <template>
   <div class="personal-center">
-    <el-card>
+    <el-card class="mt-20">
       <div slot="header" class="clearfix">
         <span>基本信息</span>
       </div>
@@ -131,7 +131,9 @@ export default {
   padding: 20px;
   margin: auto;
   min-width: 500px;
-  width: 50%;
+  /* width: 50%; */
+  background-image: url("../../static/background.jpg");
+  background-size: cover;
 }
 
 .title {
@@ -149,5 +151,9 @@ export default {
 
 .mt-20 {
   margin-top: 20px;
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 </style>
