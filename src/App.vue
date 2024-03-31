@@ -4,6 +4,7 @@
       :default-active="activeIndex"
       router
       class="el-menu-demo"
+      background-color="rgba(255, 255, 255, 0.8)"
       mode="horizontal"
     >
       <el-menu-item index="/">
@@ -96,7 +97,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 0 auto;
+  background-image: url("../static/background.jpg");
+  background-size: cover;
   /* width: 80%; */
+}
+
+.el-menu-demo {
+  background-color: rgba(255, 255, 255, 0.8);
+  /* color: rgba(255, 255, 255, 0.8); */
 }
 
 .copyright {
@@ -109,6 +117,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .user-menu {
