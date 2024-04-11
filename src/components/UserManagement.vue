@@ -15,8 +15,8 @@
           <!-- <el-button @click="deleteUser(row)" type="danger" size="small">删除</el-button> -->
           <el-button @click="disableUser(row)" type="danger" size="small" v-if="!row.disabled">禁用</el-button>
           <el-button @click="enableUser(row)" type="primary" size="small" v-if="row.disabled">启用</el-button>
-          <el-button @click="admin(row)" type="primary" size="small" v-if="row.role != 'admin' && authorization">设为管理员</el-button>
-          <el-button @click="deadmin(row)" type="danger" size="small" v-if="row.role == 'admin' && authorization">取消管理员权限</el-button>
+          <el-button @click="admin(row)" type="primary" size="small" v-if="row.role != 'admin' && authorization && row.role != 'superadmin'">设为管理员</el-button>
+          <el-button @click="deadmin(row)" type="danger" size="small" v-if="row.role == 'admin' && authorization && row.role != 'superadmin'">取消管理员权限</el-button>
         </template>
       </el-table-column>
     </el-table>
