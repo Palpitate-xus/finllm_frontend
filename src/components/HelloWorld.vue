@@ -1,48 +1,5 @@
 <template>
   <div class="home">
-    <!-- <el-card class="el-card">
-      <div slot="header" class="clearfix">
-        <span class="card-title">热点新闻</span>
-      </div>
-      <div class="notice-list">
-        <ul>
-          <li v-for="(item, index) in news" :key="index" :title="item.abstract">
-            <a :href="item.source" target="_blank">{{ item.title }}</a>
-          </li>
-        </ul>
-      </div>
-    </el-card> -->
-
-
-    <!-- <el-row :gutter="20"> -->
-      <!-- <el-col :span="4" v-for="(item, index) in basicInfo" :key="index"> -->
-        <!-- <el-card class="info-card"> -->
-          <!-- <el-statistic
-            group-separator=","
-            :precision="2"
-            :value="item.new"
-            :title="item.name"
-          ></el-statistic> -->
-          <!-- <div slot="header" class="card-header">
-            <span class="card-title">{{ item.name }}</span>
-          </div>
-          <div class="card-content">{{ item.new }}</div>
-        </el-card> -->
-      <!-- </el-col>
-    </el-row> -->
-
-    <!-- <el-row :gutter="20" class="mt-20">
-      <el-col :span="4" v-for="(item, index) in financeInfo" :key="index">
-        <el-card class="info-card">
-          <div slot="header" class="card-header">
-            <span class="card-title">{{ item.name }}</span>
-          </div>
-          <div class="card-content">{{ item.new }}</div>
-        </el-card>
-      </el-col>
-    </el-row> -->
-    
-
     <el-container>
       <el-header>
         <el-carousel indicator-position="none" arrow="never" direction="horizontal" :interval="2500">
@@ -63,7 +20,8 @@
               <el-table
                 v-loading="loading"
                 :data="stocks"
-                style="width: 100%">
+                style="width: 100%"
+              >
                 <el-table-column
                   prop="code"
                   label="代码"
@@ -90,21 +48,41 @@
         </el-aside>
         <el-container>
           <el-main>
-
-            <!-- <el-card class="el-card">
-              <div slot="header" class="clearfix">
-                <span class="card-title">热点新闻</span>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="getNews">刷新</el-button>
-              </div>
-              <div class="notice-list" v-loading="news_loading">
-                <ul>
-                  <li v-for="(item, index) in news" :key="index" :title="item.abstract">
-                    <a :href="item.source" target="_blank">{{ item.title }}</a>
-                  </li>
-                </ul>
-              </div>
-            </el-card> -->
-
+            <el-row>
+              <el-col :span="12">
+                <el-card class="el-card" style="height: 65vh;">
+                  <div slot="header" class="clearfix">
+                    <span class="card-title">热点新闻</span>
+                  </div>
+                  <div class="notice-list" v-loading="news_loading">
+                    <ul>
+                      <li v-for="(item, index) in sina_news" :key="index" :title="item.abstract">
+                        <a :href="item.source" target="_blank">{{ item.title }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="12">
+                <el-card class="el-card" style="height: 65vh; margin-left: 10px;">
+                  <div slot="header" class="clearfix">
+                    <span class="card-title">热点新闻</span>
+                  </div>
+                  <div class="notice-list" v-loading="news_loading">
+                    <ul>
+                      <li v-for="(item, index) in news" :key="index" :title="item.abstract">
+                        <a :href="item.source" target="_blank">{{ item.title }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </el-card>
+              </el-col>
+            </el-row>
+            <!-- <el-carousel height="150px">
+              <el-carousel-item v-for="item in 4" :key="item">
+                <h3 class="small">{{ item }}</h3>
+              </el-carousel-item>
+            </el-carousel> -->
           </el-main>
           <el-footer>
             <el-row :gutter="20">
@@ -146,12 +124,14 @@ export default {
       news_loading: true,
       basicInfo: [],
       financeInfo: [],
+      sina_news: [],
     };
   },
   mounted() {
     this.getNews();
     this.getStocks();
     this.getBasicInfo();
+    this.getSinaNews();
   },
   methods: {
     async getNews() {
@@ -160,6 +140,22 @@ export default {
           console.log(response);
           this.news = response.news;
           this.news_loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: '错误',
+            message: '获取首页信息失败',
+            type: 'error'
+          });
+        });
+    },
+    async getSinaNews() {
+      await axiosInstance.get('/index/sina_news')
+        .then((response) => {
+          console.log(response);
+          this.sina_news = response.news;
+          // this.news_loading = false;
         })
         .catch((error) => {
           console.log(error);
