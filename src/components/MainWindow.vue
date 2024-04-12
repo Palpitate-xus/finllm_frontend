@@ -91,7 +91,7 @@
       async handleSubmitScore(){
         await axiosInstance.post('/llms/agent_score', {
           text: this.score.toString(),
-          name: this.output,
+          passage: this.output,
           description: "agent回答评分"
         })
           .then((response) => {
