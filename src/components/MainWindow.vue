@@ -49,10 +49,10 @@
     :visible.sync="dialogVisible"
     width="30%"
     :before-close="handleClose">
-    <span></span>
+    <el-rate v-model="score" show-text></el-rate>
     <span slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      <el-button type="primary" @click="handleSubmitScore">确 定</el-button>
     </span>
   </el-dialog>
   </div>
@@ -71,6 +71,7 @@
         fileList: [],
         authorization: {},
         dialogVisible: false,
+        score: 0,
       };
     },
     mounted() {
@@ -85,6 +86,30 @@
           })
           .catch(res => {
             console.log(res);
+          });
+      },
+      async handleSubmitScore(){
+        await axiosInstance.post('/llms/agent_score', {
+          text: this.score.toString(),
+          name: this.output,
+          description: "agent回答评分"
+        })
+          .then((response) => {
+            console.log(response);
+            this.dialogVisible = false;
+            this.$notify({
+              title: '感谢您的反馈',
+              message: '已收到您的反馈',
+              type: 'success'
+            })
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$notify({
+              title: '错误',
+              message: '后端接口异常：' + error,
+              type: 'error'
+            })
           });
       },
       submitUpload() {
