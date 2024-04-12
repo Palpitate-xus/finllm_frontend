@@ -1,49 +1,44 @@
 <template>
   <div class="main-window">
-    <el-container direction="vertical" class="main-container">
-      <el-row>
-        <el-col :span="8">
-          <el-input
-            class="input-textarea"
-            rows="24"
-            type="textarea"
-            placeholder="请输入内容"
-            v-model="message"
-          ></el-input>
-        </el-col>
-        <el-col :span="6" class="button-column">
-          <el-button @click="handleClick1">情感分析</el-button>
-          <el-button @click="handleClick2">财报分析</el-button>
-          <el-button @click="handleClick3">文本总结</el-button>
-          <el-button @click="handleClick4">市场预测</el-button>
-          <el-button @click="handleClick5">风险评估</el-button>
-          <el-button @click="handleClick6">事件分析</el-button>
-          <el-button @click="handleClick7">行业研究</el-button>
-          <el-button @click="dialogVisible=true">打开对话框（测试用）</el-button>
-          <el-upload
-            action="http://127.0.0.1:8001/llms/upload/"
-            :headers="authorization"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            :on-success="fileUploaded"
-            :file-list="fileList"
-            :limit="1"
-          >
-            <el-button slot="trigger" size="small" type="primary">上传文件</el-button>
-          </el-upload>
-        </el-col>
-        <el-col :span="8">
-          <el-input
-            class="output-textarea"
-            rows="24"
-            type="textarea"
-            placeholder="输出内容"
-            v-model="output"
-            :readonly="true"
-          ></el-input>
-        </el-col>
-      </el-row>
-    </el-container>
+    <br/>
+    <el-input
+      class="input-textarea"
+      type="textarea"
+      placeholder="请输入内容"
+      v-model="message"
+    ></el-input>
+    <br/>
+    <el-button @click="handleClick1">情感分析</el-button>
+    <el-button @click="handleClick2">财报分析</el-button>
+    <el-button @click="handleClick3">文本总结</el-button>
+    <el-button @click="handleClick4">市场预测</el-button>
+    <el-button @click="handleClick5">风险评估</el-button>
+    <el-button @click="handleClick6">事件分析</el-button>
+    <el-button @click="handleClick7">行业研究</el-button>
+    <el-button @click="dialogVisible=true">打开对话框（测试用）</el-button>
+    <el-upload
+      action="http://127.0.0.1:8001/llms/upload/"
+      drag
+      :headers="authorization"
+      :on-remove="handleRemove"
+      :before-remove="beforeRemove"
+      :on-success="fileUploaded"
+      :file-list="fileList"
+      :limit="1"
+      style="margin: 0 auto; margin-top: 10px; width: 75vh;"
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">将财务报表拖到此处，或<em>点击上传</em></div>
+      <!-- <el-button slot="trigger" type="primary">上传文件</el-button> -->
+    </el-upload>
+    <el-input
+      class="output-textarea"
+      type="textarea"
+      rows="12"
+      placeholder="输出内容"
+      v-model="output"
+      :readonly="true"
+    ></el-input>
     <el-dialog
     title="请对Agent的回答进行打分"
     :visible.sync="dialogVisible"
@@ -282,13 +277,17 @@
   }
   
   .output-textarea {
-  height: 75vh;
+  /* height: 75vh; */
+  width: 75vh;
+  margin-top: 10px;
   }
 
   .input-textarea {
-  height: 75vh;
-  /* background-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5); */
+  /* height: 75vh; */
+  width: 75vh;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   }
 
   .button-column {
