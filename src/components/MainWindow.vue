@@ -4,8 +4,7 @@
       <el-row>
         <el-col :span="8">
           <el-input
-            class="input-textarea"
-            rows="24"
+            :autosize="{ minRows: 24, maxRows: 36}"
             type="textarea"
             placeholder="请输入内容"
             v-model="message"
@@ -34,8 +33,7 @@
         </el-col>
         <el-col :span="8">
           <el-input
-            class="output-textarea"
-            rows="24"
+            :autosize="{ minRows: 24, maxRows: 128}"
             type="textarea"
             placeholder="输出内容"
             v-model="output"
@@ -281,16 +279,6 @@
     height: 100vh;
   }
   
-  .output-textarea {
-  height: 75vh;
-  }
-
-  .input-textarea {
-  height: 75vh;
-  /* background-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5); */
-  }
-
   .button-column {
     /* display: flex; */
     flex-direction: column;

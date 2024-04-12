@@ -3,6 +3,7 @@
     <br/>
     <el-input
       class="input-textarea"
+      :autosize="{ minRows: 4, maxRows: 36}"
       type="textarea"
       placeholder="请输入内容"
       v-model="message"
@@ -34,7 +35,7 @@
     <el-input
       class="output-textarea"
       type="textarea"
-      rows="12"
+      :autosize="{ minRows: 8, maxRows: 128}"
       placeholder="输出内容"
       v-model="output"
       :readonly="true"
@@ -278,13 +279,13 @@
   
   .output-textarea {
   /* height: 75vh; */
-  width: 75vh;
+  width: 80vh;
   margin-top: 10px;
   }
 
   .input-textarea {
   /* height: 75vh; */
-  width: 75vh;
+  width: 80vh;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 0.5);
