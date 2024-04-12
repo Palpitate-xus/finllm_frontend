@@ -49,7 +49,7 @@
     :visible.sync="dialogVisible"
     width="30%"
     :before-close="handleClose">
-    <el-rate v-model="score" show-text></el-rate>
+    <el-rate v-model="score" show-score allow-half></el-rate>
     <span slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
       <el-button type="primary" @click="handleSubmitScore">确 定</el-button>
@@ -97,6 +97,7 @@
           .then((response) => {
             console.log(response);
             this.dialogVisible = false;
+            this.score = 0;
             this.$notify({
               title: '感谢您的反馈',
               message: '已收到您的反馈',
