@@ -19,6 +19,7 @@
           <el-button @click="handleClick5">风险评估</el-button>
           <el-button @click="handleClick6">事件分析</el-button>
           <el-button @click="handleClick7">行业研究</el-button>
+          <el-button @click="dialogVisible=true">打开对话框（测试用）</el-button>
           <el-upload
             action="http://127.0.0.1:8001/llms/upload/"
             :headers="authorization"
@@ -43,6 +44,17 @@
         </el-col>
       </el-row>
     </el-container>
+    <el-dialog
+    title="请对Agent的回答进行打分"
+    :visible.sync="dialogVisible"
+    width="30%"
+    :before-close="handleClose">
+    <span></span>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    </span>
+  </el-dialog>
   </div>
     
   </template>
@@ -58,12 +70,23 @@
         filepath: '',
         fileList: [],
         authorization: {},
+        dialogVisible: false,
       };
     },
     mounted() {
       this.authorization = { authorization: localStorage.getItem('token')};
     },
     methods: {
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(res => {
+            done();
+            console.log(res);
+          })
+          .catch(res => {
+            console.log(res);
+          });
+      },
       submitUpload() {
         console.log('submitUpload');
       },
