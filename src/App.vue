@@ -97,8 +97,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 0 auto;
-  background-image: url("../static/background.jpg");
-  background-size: cover;
+  background-color:rgba(220,38,38,0.2);
+  /* background-image: url("../static/background.jpg"); */
+  /* background-size: cover; */
   /* width: 80%; */
 }
 

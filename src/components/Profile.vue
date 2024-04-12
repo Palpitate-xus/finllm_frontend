@@ -132,8 +132,8 @@ export default {
   margin: auto;
   min-width: 500px;
   /* width: 50%; */
-  background-image: url("../../static/background.jpg");
-  background-size: cover;
+  /* background-image: url("../../static/background.jpg"); */
+  /* background-size: cover; */
 }
 
 .title {
