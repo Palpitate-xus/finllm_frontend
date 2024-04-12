@@ -14,6 +14,7 @@ import UserManagement from '../components/UserManagement.vue'
 import WebsiteConfig from '../components/WebsiteConfig.vue'
 import HelpDocs from '../components/HelpDocs.vue'
 import LogComponent from '../components/Log.vue'
+import TestPage from '../components/TestPage.vue'
 
 export default new Router({
   routes: [
@@ -31,6 +32,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: LoginComponent
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: TestPage
     },
     {
       path: '/register',
