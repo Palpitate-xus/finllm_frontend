@@ -4,7 +4,7 @@
       :default-active="activeIndex"
       router
       class="el-menu-demo"
-      background-color="rgba(255, 255, 255, 0.8)"
+      background-color="#ffffff"
       active-text-color="#409EFF"
       mode="horizontal"
     >
