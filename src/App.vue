@@ -5,6 +5,7 @@
       router
       class="el-menu-demo"
       background-color="rgba(255, 255, 255, 0.8)"
+      active-text-color="#409EFF"
       mode="horizontal"
     >
       <el-menu-item index="/">
@@ -97,7 +98,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 0 auto;
-  background-color:rgba(220,38,38,0.2);
+  background-color:rgba(70, 168, 230, 0.127);
   /* background-image: url("../static/background.jpg"); */
   /* background-size: cover; */
   /* width: 80%; */
