@@ -18,7 +18,7 @@
           <el-button @click="handleClick5">风险评估</el-button>
           <el-button @click="handleClick6">事件分析</el-button>
           <el-button @click="handleClick7">行业研究</el-button>
-          <el-button @click="dialogVisible=true">打开对话框（测试用）</el-button>
+          <el-button @click="dialogVisible=true" type="info" plain>Agent结果评分</el-button>
           <el-upload
             action="http://127.0.0.1:8001/llms/upload/"
             :headers="authorization"
